@@ -6,7 +6,7 @@
 ![Supabase](https://img.shields.io/badge/Supabase-Postgres-3ECF8E?logo=supabase&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq-LLM-F55036)
 
-Catat keuangan cukup dengan chat ke bot Telegram. Kirim teks bebas (*"makan siang 25rb"*) atau foto struk, GoFin akan memparsing-nya dengan LLM, menyimpannya ke database, lalu menampilkannya sebagai dashboard saldo & riwayat secara real-time.
+Catat keuangan cukup dengan chat ke bot Telegram. Kirim teks bebas (*"makan siang 25rb"*) atau foto struk, GoFin akan memparsing-nya dengan LLM, menyimpannya ke database, lalu menampilkannya sebagai dashboard saldo &amp; riwayat secara real-time.
 
 Proyek ini mengeksplorasi integrasi end-to-end sebuah **AI-powered personal finance tracker**: Telegram Bot API, LLM (teks + vision), Go backend, dan React dashboard dengan Supabase Realtime.
 
@@ -15,7 +15,7 @@ Proyek ini mengeksplorasi integrasi end-to-end sebuah **AI-powered personal fina
 ## Fitur Utama
 
 - **Input natural language** — catat transaksi dengan bahasa sehari-hari, tanpa form.
-- **OCR struk via vision LLM** — kirim foto struk, nominal & kategori diekstrak otomatis.
+- **OCR struk via vision LLM** — kirim foto struk, nominal &amp; kategori diekstrak otomatis.
 - **Klasifikasi otomatis** — LLM menentukan `type` (income/expense), `category`, dan `description`.
 - **Dashboard real-time** — transaksi baru muncul otomatis tanpa refresh (Supabase Realtime).
 - **Ringkasan saldo** — total saldo dihitung dari seluruh transaksi.
@@ -32,43 +32,49 @@ Telegram  ->  gofin-backend (Go/Gin)  ->  Groq (LLM)  ->  Supabase (Postgres)
 ```
 
 - **gofin-backend**: webhook Telegram, parsing pesan teks / foto struk via Groq, simpan ke tabel `transactions`.
-- **gofin-web**: baca `transactions` dengan anon key, tampilkan saldo & riwayat, auto-refresh via Supabase Realtime.
+- **gofin-web**: baca `transactions` dengan anon key, tampilkan saldo &amp; riwayat, auto-refresh via Supabase Realtime.
 
 ## Tech Stack
 
 ### Frontend (`gofin-web`)
 
-| Bagian | Teknologi | Versi |
-| --- | --- | --- |
-| Runtime | Node.js | 18+ (disarankan 20/22 LTS) |
-| UI | React | ^19.2.8 |
-| DOM renderer | react-dom | ^19.2.8 |
-| Build tool | Vite | ^8.3.0 |
-| Vite plugin | @vitejs/plugin-react (Oxc) | ^6.1.1 |
-| Data client | @supabase/supabase-js | ^2.117.3 |
-| Lint | ESLint (flat config) | ^10.10.0 |
-| Lint plugin | eslint-plugin-react-hooks | ^7.1.1 |
-| Lint plugin | eslint-plugin-react-refresh | ^0.5.6 |
-| Bahasa | JavaScript (JSX, ESM) | - |
+
+| Bagian       | Teknologi                   | Versi                      |
+| ------------ | --------------------------- | -------------------------- |
+| Runtime      | Node.js                     | 18+ (disarankan 20/22 LTS) |
+| UI           | React                       | ^19.2.8                    |
+| DOM renderer | react-dom                   | ^19.2.8                    |
+| Build tool   | Vite                        | ^8.3.0                     |
+| Vite plugin  | @vitejs/plugin-react (Oxc)  | ^6.1.1                     |
+| Data client  | @supabase/supabase-js       | ^2.117.3                   |
+| Lint         | ESLint (flat config)        | ^10.10.0                   |
+| Lint plugin  | eslint-plugin-react-hooks   | ^7.1.1                     |
+| Lint plugin  | eslint-plugin-react-refresh | ^0.5.6                     |
+| Bahasa       | JavaScript (JSX, ESM)       | -                          |
+
 
 ### Backend (`gofin-backend`)
 
-| Bagian | Teknologi | Versi |
-| --- | --- | --- |
-| Bahasa | Go | 1.27.2 |
-| HTTP framework | Gin | v1.12.0 |
-| Env loader | godotenv | v1.5.1 |
-| LLM (teks & vision) | Groq API (`openai/gpt-oss-20b`, `qwen/qwen3.8-27b`) | - |
-| Bot | Telegram Bot API | - |
+
+| Bagian                  | Teknologi                                           | Versi   |
+| ----------------------- | --------------------------------------------------- | ------- |
+| Bahasa                  | Go                                                  | 1.27.2  |
+| HTTP framework          | Gin                                                 | v1.12.0 |
+| Env loader              | godotenv                                            | v1.5.1  |
+| LLM (teks &amp; vision) | Groq API (`openai/gpt-oss-20b`, `qwen/qwen3.8-27b`) | -       |
+| Bot                     | Telegram Bot API                                    | -       |
+
 
 ### Infrastruktur
 
-| Bagian | Teknologi |
-| --- | --- |
-| Database | Supabase Postgres |
-| API data | Supabase PostgREST (auto-generated) |
-| Realtime | Supabase Realtime (postgres_changes) |
-| Auth | Belum ada (anon key untuk MVP) |
+
+| Bagian   | Teknologi                             |
+| -------- | ------------------------------------- |
+| Database | Supabase Postgres                     |
+| API data | Supabase PostgREST (auto-generated)   |
+| Realtime | Supabase Realtime (postgres\_changes) |
+| Auth     | Belum ada (anon key untuk MVP)        |
+
 
 ## Struktur Proyek
 
@@ -96,7 +102,7 @@ VITE_SUPABASE_ANON_KEY=<anon-key>
 
 > Hanya variabel ber-prefix `VITE_` yang terekspos ke bundle. **Jangan** taruh `service_role`/secret key di sini karena ikut terkirim ke browser.
 
-### 2. Install & jalankan
+### 2. Install &amp; jalankan
 
 ```bash
 npm install
@@ -108,19 +114,81 @@ npm run lint      # ESLint
 
 Vite hanya membaca `.env` saat startup. **Restart** `npm run dev` setiap kali `.env` berubah.
 
+## Setup Backend (`gofin-backend`)
+
+### 1. Environment
+
+Buat file `.env` di root `gofin-backend/`:
+
+```env
+PORT=8090
+TELEGRAM_BOT_TOKEN=<token dari @BotFather>
+GROQ_API_KEY=<api key dari console.groq.com>
+SUPABASE_URL=https://<project-ref>.supabase.co
+SUPABASE_SERVICE_KEY=<service_role / secret key — HANYA di backend>
+```
+
+> `SUPABASE_SERVICE_KEY` dipakai backend untuk **menulis tanpa RLS**. Jangan pernah expose ke frontend.
+
+### 2. Jalankan
+
+```bash
+go mod download
+go run .
+# atau build:
+go build -o gofin-backend.exe .
+./gofin-backend.exe
+```
+
+Bisa juga via Docker:
+
+```bash
+docker build -t gofin-backend .
+docker run --env-file .env -p 8090:8090 gofin-backend
+```
+
+### 3. Registrasi Webhook Telegram
+
+Telegram harus bisa menjangkau backend dari internet publik. Untuk development, expose port lokal dengan tunnel (mis. ngrok):
+
+```bash
+ngrok http 8090
+# contoh URL publik: https://abcd-1234.ngrok-free.app
+```
+
+Daftarkan URL webhook ke Telegram (jalankan sekali setiap URL berubah):
+
+```bash
+curl "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook?url=https://<public-url>/webhook/telegram"
+```
+
+Cek status &amp; hapus webhook:
+
+```bash
+# lihat info webhook aktif (pending_update_count, last_error, dsb.)
+curl "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/getWebhookInfo"
+
+# hapus webhook (mis. kembali ke mode polling / ganti URL)
+curl "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/deleteWebhook?drop_pending_updates=true"
+```
+
+> URL webhook **wajib HTTPS**. Di produksi gunakan domain tetap (mis. `https://gofin-api.example.com/webhook/telegram`), bukan URL ngrok yang berganti tiap restart.
+
 ## Skema Data
 
 Tabel `public.transactions` yang dikonsumsi frontend:
 
-| Kolom | Tipe | Keterangan |
-| --- | --- | --- |
-| `id` | uuid | Primary key |
-| `user_id` | text | ID chat Telegram pengirim |
-| `type` | text | `income` atau `expense` |
-| `amount` | numeric | Nominal |
-| `category` | text | Kategori transaksi |
-| `description` | text | Deskripsi |
+
+| Kolom              | Tipe        | Keterangan                |
+| ------------------ | ----------- | ------------------------- |
+| `id`               | uuid        | Primary key               |
+| `user_id`          | text        | ID chat Telegram pengirim |
+| `type`             | text        | `income` atau `expense`   |
+| `amount`           | numeric     | Nominal                   |
+| `category`         | text        | Kategori transaksi        |
+| `description`      | text        | Deskripsi                 |
 | `transaction_date` | timestamptz | Diisi backend saat insert |
+
 
 ### RLS (penting)
 
@@ -149,7 +217,7 @@ Realtime tetap menghormati RLS, jadi policy SELECT anon harus ada.
 ## Alur Data di `App.jsx`
 
 1. `createClient(VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY)` (`App.jsx:7`).
-2. `useEffect` -> `fetchTransactions()` memanggil `from('transactions').select('*').order('transaction_date', { ascending: false })`.
+2. `useEffect` -&gt; `fetchTransactions()` memanggil `from('transactions').select('*').order('transaction_date', { ascending: false })`.
 3. Saldo dihitung di klien: `income` menambah, `expense` mengurangi (`App.jsx:37`).
 4. Berlangganan channel `realtime-transactions`, event `INSERT` memicu re-fetch (`App.jsx:17`). Channel dibersihkan saat unmount.
 
@@ -157,10 +225,10 @@ Realtime tetap menghormati RLS, jadi policy SELECT anon harus ada.
 
 1. Pengguna mengirim pesan teks atau foto struk ke bot Telegram.
 2. Telegram meneruskan update ke webhook `POST /webhook/telegram` di `gofin-backend`.
-3. Backend memilih jalur: teks -> `openai/gpt-oss-20b`, foto -> `qwen/qwen3.8-27b` (vision). Keduanya diminta mengembalikan JSON terstruktur (`amount`, `type`, `category`, `description`).
+3. Backend memilih jalur: teks -&gt; `openai/gpt-oss-20b`, foto -&gt; `qwen/qwen3.8-27b` (vision). Keduanya diminta mengembalikan JSON terstruktur (`amount`, `type`, `category`, `description`).
 4. Hasil validasi disimpan ke tabel `transactions` via Supabase REST memakai service key.
 5. Bot membalas ringkasan transaksi ke pengguna.
-6. Insert baru memicu event Supabase Realtime -> dashboard React memperbarui saldo & riwayat otomatis.
+6. Insert baru memicu event Supabase Realtime -&gt; dashboard React memperbarui saldo &amp; riwayat otomatis.
 
 ## Highlight Teknis
 
@@ -173,19 +241,21 @@ Realtime tetap menghormati RLS, jadi policy SELECT anon harus ada.
 ## Roadmap
 
 - [ ] Auth Supabase + scope RLS ke `user_id` (ganti policy `using (true)`).
-- [ ] Filter periode & kategori di dashboard.
+- [ ] Filter periode &amp; kategori di dashboard.
 - [ ] Kategori kustom / budget bulanan.
 - [ ] Grafik tren pengeluaran.
 - [ ] Deployment: backend (Fly.io/Render) + web (Vercel/Netlify).
 
 ## Troubleshooting
 
-| Gejala | Penyebab | Solusi |
-| --- | --- | --- |
-| Saldo Rp 0, list kosong, tanpa error | RLS aktif tanpa policy anon | Tambah policy SELECT (lihat RLS) |
-| Data tidak auto-refresh | Tabel belum masuk publication realtime | `alter publication supabase_realtime add table ...` |
-| Perubahan `.env` tidak terbaca | Vite membaca env saat startup | Restart dev server |
-| `401`/`invalid api key` | URL/key salah atau key tertukar | Cocokkan dengan project Supabase |
+
+| Gejala                               | Penyebab                               | Solusi                                              |
+| ------------------------------------ | -------------------------------------- | --------------------------------------------------- |
+| Saldo Rp 0, list kosong, tanpa error | RLS aktif tanpa policy anon            | Tambah policy SELECT (lihat RLS)                    |
+| Data tidak auto-refresh              | Tabel belum masuk publication realtime | `alter publication supabase_realtime add table ...` |
+| Perubahan `.env` tidak terbaca       | Vite membaca env saat startup          | Restart dev server                                  |
+| `401`/`invalid api key`              | URL/key salah atau key tertukar        | Cocokkan dengan project Supabase                    |
+
 
 Verifikasi cepat bahwa anon key boleh baca:
 
